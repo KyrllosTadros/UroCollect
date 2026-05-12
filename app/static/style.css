@@ -170,7 +170,12 @@ button.btn-blauw:hover {
     font-weight: bold;
 }
 
-
+.error-msg {
+    color: #760404;
+    margin-bottom: 12px;
+    display: none;
+    font-size: 14px;
+}
 /* Responsive */
 
 @media (max-width: 500px){
