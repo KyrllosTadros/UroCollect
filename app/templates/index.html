@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Amsterdam UMC - Login</title>
+
+    <!-- CSS koppeling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="page-container">
+
+        <!-- Logo -->
+        <div class="logo-section">
+            <h1>Amsterdam UMC</h1>
+        </div>
+
+        <!-- Login card -->
+        <div class="login-card">
+
+            <h2>Inloggen</h2>
+
+            <form>
+
+                <!-- Gebruikersnaam -->
+                <div class="input-group">
+                    <label for="username">
+                        Gebruikersnaam
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Voer gebruikersnaam in"
+                    >
+                </div>
+
+                <!-- Wachtwoord -->
+                <div class="input-group">
+                    <label for="password">
+                        Wachtwoord
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Voer wachtwoord in"
+                    >
+                </div>
+
+                <!-- Login knop -->
+                <button type="submit">
+                    Log in
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Account aanmaken -->
+        <div class="register-card">
+
+            <p>
+                Nog geen account?
+            </p>
+
+            <a href="#">
+                Maak account
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
