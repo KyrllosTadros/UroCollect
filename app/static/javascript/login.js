@@ -1,54 +1,40 @@
-<!DOCTYPE html>
-<html lang="nl">
+document.getElementById("loginBtn").addEventListener("click", async () => {
+    const email    = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const errorMsg = document.getElementById("error-msg");
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amsterdam UMC - Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
+    // Verberg vorige foutmelding
+    errorMsg.style.display = "none";
 
-<body>
+    // Lege velden controleren
+    if (!email || !password) {
+        errorMsg.textContent = "Vul alle velden in.";
+        errorMsg.style.display = "block";
+        return;
+    }
 
-    <div class="page-container">
+    try {
+        const response = await fetch("/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
 
-        <div class="logo-section">
-            <h1>Amsterdam UMC</h1>
-        </div>
+        const data = await response.json();
 
-        <div class="login-card">
+        if (data.success) {
+            // Sla de patient_id op voor gebruik op andere pagina's
+            localStorage.setItem("patient_id", data.patient_id);
 
-            <h2>Inloggen</h2>
+            // Stuur door naar het dashboard
+            window.location.href = "/dashboard";
+        } else {
+            errorMsg.textContent = data.message || "Inloggen mislukt.";
+            errorMsg.style.display = "block";
+        }
 
-            <form>
-
-                <div class="input-group">
-                    <label for="email">E-mailadres</label>
-                    <input type="email" id="email" name="email" placeholder="Voer e-mailadres in">
-                </div>
-
-                <div class="input-group">
-                    <label for="password">Wachtwoord</label>
-                    <input type="password" id="password" name="password" placeholder="Voer wachtwoord in">
-                </div>
-
-                <p id="error-msg" style="color:#ffe0e0; margin-bottom:12px; display:none;"></p>
-
-                <button type="button" id="loginBtn" class="btn-rood">Log in</button>
-
-            </form>
-
-        </div>
-
-        <div class="register-card">
-            <p>Nog geen account?</p>
-            <button class="btn-blauw" onclick="window.location.href='/register'">Maak account</button>
-        </div>
-
-    </div>
-
-    <script src="{{ url_for('static', filename='javascript/login.js') }}"></script>
-
-</body>
-
-</html>
+    } catch (error) {
+        errorMsg.textContent = "Verbindingsfout. Probeer het opnieuw.";
+        errorMsg.style.display = "block";
+    }
+});
