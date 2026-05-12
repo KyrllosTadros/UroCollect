@@ -1,17 +1,51 @@
 from flask import Blueprint, request, jsonify, render_template
 from app.db import supabase
-from app.security import hash_password
+from app.security import hash_password, verify_password
 
 main = Blueprint("main", __name__)
 
 
+# =====================================================
+# PAGINA'S
+# =====================================================
 
-main = Blueprint("main", __name__)
-
-# LOGIN PAGINA
 @main.route("/")
 def login():
     return render_template("login.html")
+
+@main.route("/register")
+def register():
+    return render_template("registreer.html")
+
+
+# =====================================================
+# AUTHENTICATIE
+# =====================================================
+
+@main.route("/login", methods=["POST"])
+def login_user():
+    data     = request.json
+    email    = data.get("email")
+    password = data.get("password")
+
+    # Zoek gebruiker op via e-mail
+    result = supabase.table("patients").select("*").eq("email", email).execute()
+
+    if not result.data:
+        return jsonify({"success": False, "message": "Geen account gevonden met dit e-mailadres."}), 404
+
+    user = result.data[0]
+
+    # Vergelijk wachtwoord met de opgeslagen hash
+    if verify_password(password, user["password_hash"]):
+        return jsonify({
+            "success": True,
+            "message": "Ingelogd",
+            "patient_id": user["patient_id"]
+        })
+    else:
+        return jsonify({"success": False, "message": "Verkeerd wachtwoord."}), 401
+
 
 # =====================================================
 # PATIENTS
@@ -19,6 +53,9 @@ def login():
 
 @main.route("/patients")
 def get_patients():
+    """
+    cvxcvxcv
+    """
     return jsonify(supabase.table("patients").select("*").execute().data)
 
 
