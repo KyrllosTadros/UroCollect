@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amsterdam UMC - Verificatie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="page-container">
+
+        <div class="logo-section">
+            <h1>Amsterdam UMC</h1>
+        </div>
+
+        <div class="login-card">
+
+            <h2>Verificatie</h2>
+
+            <p style="color:white; text-align:center; margin-bottom:20px;">
+                We hebben een 6-cijferige code gestuurd naar uw e-mailadres.
+                De code is 5 minuten geldig.
+                Check ook uw spam folder
+            </p>
+
+            <form>
+
+                <div class="input-group">
+                    <label for="code">Verificatiecode</label>
+                    <input
+                        type="text"
+                        id="code"
+                        placeholder="Voer de 6-cijferige code in"
+                        maxlength="6"
+                        inputmode="numeric"
+                        autocomplete="one-time-code"
+                    >
+                </div>
+
+                <p id="error-msg" class="error-msg"></p>
+
+                <button type="button" id="verifyBtn" class="btn-rood">Bevestigen</button>
+
+            </form>
+
+        </div>
+
+        <div class="register-card">
+            <p>Geen code ontvangen?</p>
+            <button class="btn-blauw" id="resendBtn">Stuur opnieuw</button>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='javascript/verifieer_2fa.js') }}"></script>
+
+</body>
+
+</html>

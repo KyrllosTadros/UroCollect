@@ -1,8 +1,15 @@
-from flask import Blueprint, request, jsonify, render_template
+import random
+import time
+from flask import Blueprint, request, jsonify, render_template, session
 from app.db import supabase
 from app.security import hash_password, verify_password
+from app.mailservice import send_2fa_code
 
 main = Blueprint("main", __name__)
+
+
+CODE_TTL_SEC  = 5 * 60   # code geldig voor 5 minuten
+MAX_ATTEMPTS  = 5       # maximaal 5 pogingen
 
 
 # =====================================================
@@ -17,6 +24,10 @@ def login():
 def register():
     return render_template("registreer.html")
 
+@main.route("/verifieer-2fa")
+def verifieer_2fa_page():
+    return render_template("verifieer_2fa.html")
+
 
 # =====================================================
 # AUTHENTICATIE
@@ -25,8 +36,11 @@ def register():
 @main.route("/login", methods=["POST"])
 def login_user():
     data     = request.json
-    email    = data.get("email")
-    password = data.get("password")
+    email    = (data.get("email") or "").strip()
+    password = data.get("password", "")
+
+    if not email or not password:
+        return jsonify({"success": False, "message": "Vul alle velden in."}), 400
 
     # Zoek gebruiker op via e-mail
     result = supabase.table("patients").select("*").eq("email", email).execute()
@@ -36,15 +50,85 @@ def login_user():
 
     user = result.data[0]
 
-    # Vergelijk wachtwoord met de opgeslagen hash
-    if verify_password(password, user["password_hash"]):
-        return jsonify({
-            "success": True,
-            "message": "Ingelogd",
-            "patient_id": user["patient_id"]
-        })
-    else:
+    if not verify_password(password, user["password_hash"]):
         return jsonify({"success": False, "message": "Verkeerd wachtwoord."}), 401
+
+    # Wachtwoord klopt → genereer 2FA-code
+    code       = str(random.randint(100000, 999999))
+    expires_at = time.time() + CODE_TTL_SEC
+
+    # Sla tijdelijk op in sessie (nog niet definitief ingelogd)
+    session["pending_patient_id"] = user["patient_id"]
+    session["pending_email"]      = email
+    session["2fa_code"]           = code
+    session["2fa_expires"]        = expires_at
+    session["2fa_attempts"]       = 0
+
+    send_2fa_code(email, code)
+
+    return jsonify({"success": True, "message": "2FA_REQUIRED"})
+
+
+@main.route("/auth/verifieer-2fa", methods=["POST"])
+def verifieer_2fa():
+    data = request.json
+    code = (data.get("code") or "").strip()
+
+    # Controleer of 2FA wel gestart is
+    if "2fa_code" not in session or "pending_patient_id" not in session:
+        return jsonify({"success": False, "message": "2FA niet gestart. Log opnieuw in."}), 401
+
+    # Te veel pogingen
+    attempts = session.get("2fa_attempts", 0)
+    if attempts >= MAX_ATTEMPTS:
+        _clear_2fa()
+        _clear_pending()
+        return jsonify({"success": False, "message": "Te veel pogingen. Log opnieuw in."}), 401
+
+    # Code verlopen
+    if time.time() > session["2fa_expires"]:
+        _clear_2fa()
+        _clear_pending()
+        return jsonify({"success": False, "message": "Code verlopen. Log opnieuw in."}), 401
+
+    # Verkeerde code
+    if code != session["2fa_code"]:
+        session["2fa_attempts"] = attempts + 1
+        remaining = MAX_ATTEMPTS - session["2fa_attempts"]
+        return jsonify({"success": False, "message": f"Verkeerde code. Nog {remaining} poging(en)."}), 401
+
+    # Code correct = definitief inloggen
+    patient_id = session.pop("pending_patient_id")
+    session["patient_id"] = patient_id
+
+    _clear_2fa()
+    _clear_pending()
+
+    return jsonify({"success": True, "message": "OK", "patient_id": patient_id})
+
+
+@main.route("/auth/resend-2fa", methods=["POST"])
+def resend_2fa():
+    email = session.get("pending_email")
+    if not email:
+        return jsonify({"success": False, "message": "2FA niet gestart. Log opnieuw in."}), 401
+
+    code       = str(random.randint(100000, 999999))
+    expires_at = time.time() + CODE_TTL_SEC
+
+    session["2fa_code"]     = code
+    session["2fa_expires"]  = expires_at
+    session["2fa_attempts"] = 0
+
+    send_2fa_code(email, code)
+
+    return jsonify({"success": True, "message": "Nieuwe code verstuurd."})
+
+
+@main.route("/auth/logout", methods=["POST"])
+def logout():
+    session.clear()
+    return jsonify({"success": True, "message": "Uitgelogd."})
 
 
 # =====================================================
@@ -54,7 +138,7 @@ def login_user():
 @main.route("/patients")
 def get_patients():
     """
-    cvxcvxcv
+    hier moet docstring
     """
     return jsonify(supabase.table("patients").select("*").execute().data)
 
@@ -140,3 +224,13 @@ def delete_session(session_id):
     supabase.table("sessions").delete().eq("session_id", session_id).execute()
 
     return {"message": "Session deleted"}
+
+def _clear_2fa():
+    session.pop("2fa_code", None)
+    session.pop("2fa_expires", None)
+    session.pop("2fa_attempts", None)
+
+
+def _clear_pending():
+    session.pop("pending_patient_id", None)
+    session.pop("pending_email", None)

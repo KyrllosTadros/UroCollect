@@ -26,8 +26,8 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
             // Sla de patient_id op voor gebruik op andere pagina's
             localStorage.setItem("patient_id", data.patient_id);
 
-            // Stuur door naar het dashboard
-            window.location.href = "/dashboard";
+            // Stuur door naar 2fa
+            window.location.href = "/verifieer-2fa";
         } else {
             errorMsg.textContent = data.message || "Inloggen mislukt.";
             errorMsg.style.display = "block";
