@@ -1,0 +1,12 @@
+# Omgevingsvariabelen
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtuele omgeving
+venv/
+
+# IDE-bestanden
+.vscode/
