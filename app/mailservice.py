@@ -1,3 +1,24 @@
+"""
+E-mailservice module voor het versturen van 2FA-codes.
+
+Deze module verzorgt het versturen van tweefactorauthenticatie (2FA) codes
+via e-mail met behulp van SMTP. De configuratie (SMTP host, poort en
+inloggegevens) wordt geladen uit omgevingsvariabelen via een .env-bestand.
+
+De module bouwt een HTML e-mail op en verstuurt deze veilig via een
+beveiligde TLS-verbinding.
+
+Omgevingsvariabelen:
+    SMTP_HOST (str): SMTP server host (standaard: smtp.gmail.com)
+    SMTP_PORT (int): SMTP poort (standaard: 587)
+    SMTP_USER (str): SMTP gebruikersnaam / e-mailadres
+    SMTP_PASS (str): SMTP wachtwoord of app password
+    MAIL_FROM (str): Afzender e-mailadres (standaard: SMTP_USER)
+
+Functie:
+    send_2fa_code(to_email, code): Verstuurt een 2FA-code naar een gebruiker.
+"""
+
 import smtplib
 import os
 from email.mime.text import MIMEText

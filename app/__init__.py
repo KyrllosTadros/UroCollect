@@ -1,3 +1,12 @@
+"""
+Flask applicatiefabriek (application factory).
+Deze module initialiseert en configureert de Flask-applicatie.
+Bij het opstarten worden omgevingsvariabelen geladen vanuit een .env-bestand,
+wordt de Flask-app aangemaakt en wordt de SECRET_KEY ingesteld voor
+sessiebeheer en beveiliging.
+Daarnaast worden de verschillende blueprints (routes) geregistreerd
+om de applicatie structureel op te bouwen volgens het Flask factory pattern.
+"""
 import os
 from flask import Flask
 from dotenv import load_dotenv
@@ -7,10 +16,10 @@ load_dotenv()
 def create_app():
     """
     Maakt en configureert de Flask-applicatie. Deze functie initialiseert een Flask-app,
-    laadt omgevingsvariabelen uit een .env-bestand en stelt de SECRET_KEY in die nodig is voor sessiebeheer in Flask.
+    laadt omgevingsvariabelen uit een .env-bestand
+    en stelt de SECRET_KEY in die nodig is voor sessiebeheer in Flask.
     Daarnaast wordt de blueprint met routes geregistreerd.
     Returns:
-
         Flask app: de geïnitialiseerde Flask-applicatie.
     """
     app = Flask(__name__)
