@@ -1,3 +1,100 @@
+/**
+
+ * Verwerkt het registreren van een nieuwe gebruiker wanneer op de registreerknop wordt geklikt.
+
+ *
+
+ * @functie handleRegisterClick
+
+ * @async
+
+ * @beschrijving
+
+ * Deze functionaliteit bestaat uit twee delen:
+
+ *
+
+ * 1. Instellen van de maximale datum voor het geboortedatum veld:
+
+ *    - De gebruiker kan geen datum in de toekomst selecteren
+
+ *
+
+ * 2. Afhandelen van de registratie:
+
+ *    - Ophalen van invoervelden (email, naam, geboortedatum, wachtwoord)
+
+ *    - Controleren of alle velden zijn ingevuld
+
+ *    - Valideren van:
+
+ *        - Geboortedatum (mag niet in de toekomst liggen)
+
+ *        - Wachtwoord (minimaal 6 tekens)
+
+ *    - Versturen van een POST-request naar de backend (/patients/add)
+
+ *    - Verwerken van de response:
+
+ *        - Bij succes:
+
+ *            - Toon bevestiging
+
+ *            - Redirect naar loginpagina
+
+ *        - Bij fout:
+
+ *            - Toon foutmelding
+
+ *    - Afhandelen van netwerkfouten
+
+ *
+
+ * @luistertNaar click#registerBtn
+
+ *
+
+ * @gooit {Error} Toont een foutmelding bij een verbindingsfout
+
+ *
+
+ * @voorbeeld
+
+ * // Wordt automatisch uitgevoerd bij klikken op de registreerknop
+
+ * document.getElementById("registerBtn").click();
+
+ *
+
+ * @vereist DOM elementen:
+
+ * - #email (invoerveld voor email)
+
+ * - #name (invoerveld voor naam)
+
+ * - #geboortedatum (datumselector)
+
+ * - #password (invoerveld voor wachtwoord)
+
+ * - #error-msg (element voor foutmeldingen)
+
+ *
+
+ * @bijwerkingen
+
+ * - Toont een alert bij succesvolle registratie
+
+ * - Stuurt de gebruiker door naar "/"
+
+ *
+
+ * @security
+
+ * - Basisvalidatie gebeurt aan de client-side
+
+ * - Backend moet extra validatie en beveiliging uitvoeren (bijv. hashing wachtwoorden)
+
+ */
 document.getElementById("geboortedatum").setAttribute(
     "max",
     new Date().toISOString().split("T")[0]
@@ -6,15 +103,13 @@ document.getElementById("geboortedatum").setAttribute(
 document.getElementById("registerBtn").addEventListener("click", async () => {
     const email         = document.getElementById("email").value.trim();
     const name          = document.getElementById("name").value.trim();
-    const date_of_birth = document.getElementById("geboortedatum").value;  // ← deze regel miste
+    const date_of_birth = document.getElementById("geboortedatum").value;
     const password      = document.getElementById("password").value;
     const errorMsg      = document.getElementById("error-msg");
     const vandaag       = new Date().toISOString().split("T")[0];
 
-    // Verberg vorige foutmelding
     errorMsg.style.display = "none";
 
-    // Lege velden controleren
     if (!email || !name || !date_of_birth || !password) {
         errorMsg.textContent = "Vul alle velden in.";
         errorMsg.style.display = "block";
@@ -28,7 +123,6 @@ document.getElementById("registerBtn").addEventListener("click", async () => {
         return;
     }
 
-    // Wachtwoord minimale lengte
     if (password.length < 6) {
         errorMsg.textContent = "Wachtwoord moet minimaal 6 tekens bevatten.";
         errorMsg.style.display = "block";
