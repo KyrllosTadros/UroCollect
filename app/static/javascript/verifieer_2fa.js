@@ -145,7 +145,7 @@ document.getElementById("resendBtn").addEventListener("click", async () => {
             errorMsg.style.display = "block";
 
             setTimeout(() => {
-                errorMsg.style.color = "#ffe0e0";
+                errorMsg.style.color = "#760404";
                 errorMsg.style.display = "none";
             }, 3000);
         } else {
