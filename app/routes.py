@@ -81,10 +81,25 @@ def uitleg2():
     """Render de tweede uitlegpagina."""
     return render_template("uitleg2.html")
 
-@main.route("/uitleg2")
+@main.route("/stap1")
 def stap1():
     """Render naar stap 1 uitleg."""
     return render_template("stap1.html")
+
+@main.route("/stap2")
+def stap2():
+    """Render naar stap 2 uitleg."""
+    return render_template("stap2.html")
+
+@main.route("/stap3")
+def stap3():
+    """Render naar stap 3 uitleg."""
+    return render_template("stap3.html")
+
+@main.route("/stap4")
+def stap4():
+    """Render naar stap 4 uitleg."""
+    return render_template("stap4.html")
 
 
 # AUTHENTICATIE

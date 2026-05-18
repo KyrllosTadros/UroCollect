@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Amsterdam UMC - Stap 1
+    </title>
+
+    <!-- Algemene styling -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <!-- Home / navbar styling -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/home.css') }}"
+    >
+
+    <!-- Pagina specifieke styling -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/stap1.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <div class="page-container">
+
+        <!-- Logo -->
+        <div class="logo-section">
+
+            <h1>
+                Amsterdam UMC
+            </h1>
+
+        </div>
+
+        <!-- Titel -->
+        <h2 class="stap-title">
+
+            Hoe verzamelt u uw urine
+            op de juiste manier?
+
+        </h2>
+
+        <!-- Stap 1 kaart -->
+        <div class="stap-card">
+
+            <p>
+
+                <strong>1.</strong>
+
+                Als u in de ochtend opstaat,
+                plast u eerst uit in het toilet.
+
+                <br><br>
+
+                Let op dat u volledig uitplast.
+
+                <br><br>
+
+                Deze plas wordt niet bewaard
+                en hoeft u dus ook
+                <strong>NIET</strong>
+                op te vangen.
+
+            </p>
+
+        </div>
+
+        <!-- Knoppen -->
+        <div class="button-row">
+
+            <!-- Terug -->
+            <button
+                id="backBtn"
+                class="btn-wit"
+                type="button"
+            >
+                ← Terug
+            </button>
+
+            <!-- Verder -->
+            <button
+                id="nextBtn"
+                class="btn-oranje"
+                type="button"
+            >
+                Stap 2 →
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Onderste navigatie -->
+    <nav class="bottom-nav">
+
+        <div class="nav-item">
+            <span class="nav-icon">
+                &#9432;
+            </span>
+            <span class="nav-label">
+                Uitleg
+            </span>
+        </div>
+
+        <div class="nav-item">
+            <span class="nav-icon">
+                &#43;
+            </span>
+            <span class="nav-label">
+                Nieuwe meting toevoegen
+            </span>
+        </div>
+
+        <div class="nav-item nav-home">
+
+            <div class="nav-home-circle">
+
+                <span class="nav-icon home-icon">
+                    &#8962;
+                </span>
+
+            </div>
+
+            <span class="nav-label">
+                Home
+            </span>
+
+        </div>
+
+        <div class="nav-item">
+            <span class="nav-icon">
+                &#128276;
+            </span>
+
+            <span class="nav-label">
+                Nieuwe melding toevoegen
+            </span>
+        </div>
+
+        <div class="nav-item">
+            <span class="nav-icon">
+                &#63;
+            </span>
+
+            <span class="nav-label">
+                Help
+            </span>
+        </div>
+
+    </nav>
+
+    <!-- JavaScript -->
+    <script
+        src="{{ url_for('static', filename='javascript/stap1.js') }}"
+    ></script>
+
+</body>
+
+</html>
