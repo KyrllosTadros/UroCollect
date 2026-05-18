@@ -90,7 +90,7 @@ async function startMeting() {
 
         const data = await resp.json();
 
-        // 🔥 Alleen session_id opslaan (GEEN tijd!)
+        // Alleen session_id opslaan (GEEN tijd!)
         localStorage.setItem("session_id", data.session_id);
 
         toonActiefScherm(nu, einde);

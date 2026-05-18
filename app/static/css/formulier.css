@@ -1,0 +1,180 @@
+
+.formulier-card {
+    background: white;
+    border-radius: 14px;
+    padding: 26px 20px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.13);
+    margin-bottom: 20px;
+}
+
+.formulier-card h2 {
+    color: #1f425d;
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+.formulier-subtitel {
+    color: #888;
+    font-size: 0.82rem;
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+/* Sectietitels */
+.sectie-titel {
+    font-size: 0.78rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #5aab2e;
+    border-bottom: 1.5px solid #d8f0cc;
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+    margin-top: 22px;
+}
+
+/* Veldgroepen */
+.veld-groep {
+    margin-bottom: 16px;
+}
+
+.veld-groep label {
+    display: block;
+    font-size: 0.85rem;
+    color: #333;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.veld-groep label .optioneel {
+    font-weight: normal;
+    color: #999;
+    font-size: 0.78rem;
+}
+
+/* Tekstvelden algemeen */
+.veld-groep input[type="text"],
+.veld-groep input[type="time"],
+.veld-groep input[type="number"] {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1.5px solid #ddd;
+    border-radius: 9px;
+    font-size: 0.92rem;
+    color: #222;
+    background: white;
+    transition: border-color 0.15s;
+}
+
+.veld-groep input:focus {
+    outline: none;
+    border-color: #5aab2e;
+}
+
+/* Vergrendeld readonly veld */
+.veld-wrapper {
+    position: relative;
+}
+
+.veld-wrapper input[readonly] {
+    background: #dedddd;
+    color: #666;
+    padding-right: 38px;
+}
+
+.veld-slot {
+    position: absolute;
+    right: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #bbb;
+    pointer-events: none;
+}
+
+/* Toelichting onder veld */
+.veld-toelichting {
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 5px;
+}
+
+/* Twee-kolommen layout */
+.twee-kolommen {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* ml-wrapper */
+.veld-ml-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.veld-ml-wrapper input {
+    flex: 1;
+}
+
+.ml-label {
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: bold;
+    flex-shrink: 0;
+    width: 24px;
+}
+
+/* Totaalveld */
+.totaal-groep input.totaal-input {
+    background: #f0fae8;
+    color: #2a7a0e;
+    font-weight: bold;
+    border-color: #b8e4a0;
+}
+
+/* Gewijzigde velden markering */
+input.gewijzigd {
+    border-color: #d97c2b !important;
+    background: #fff8f0 !important;
+}
+
+/* Waarschuwingsbanner */
+.wijziging-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #fff3e0;
+    border: 1.5px solid #d97c2b;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-bottom: 14px;
+    font-size: 0.85rem;
+    color: #7a4200;
+    line-height: 1.45;
+}
+
+.wijziging-icon {
+    font-size: 1.2rem;
+    color: #d97c2b;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+/* Succesbericht */
+.succes-msg {
+    background: #edf7e5;
+    border: 1.5px solid #8fd46b;
+    border-radius: 9px;
+    color: #2a7a0e;
+    font-size: 0.9rem;
+    padding: 11px 14px;
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+/* Opslaanknop */
+#opslaan-btn {
+    margin-top: 6px;
+}

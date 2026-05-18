@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amsterdam UMC - Formulier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/formulier.css') }}">
+</head>
+
+<body>
+    <div class="page-container">
+        <div class="logo-section">
+            <h1>Amsterdam UMC</h1>
+        </div>
+
+        <div class="formulier-card">
+            <h2>Meetformulier</h2>
+            <p class="formulier-subtitel">Eerste verzameling — 24-uursurine</p>
+
+            <!-- PATIËNTGEGEVENS -->
+            <div class="sectie-titel">Patiëntgegevens</div>
+
+            <div class="veld-groep">
+                <label for="naam">Naam</label>
+                <div class="veld-wrapper">
+                    <input type="text" id="naam" placeholder="Wordt geladen…" readonly>
+                    <span class="veld-slot">&#128274;</span>
+                </div>
+            </div>
+
+            <div class="veld-groep">
+                <label for="geboortedatum">Geboortedatum</label>
+                <div class="veld-wrapper">
+                    <input type="text" id="geboortedatum" placeholder="Wordt geladen…" readonly>
+                    <span class="veld-slot">&#128274;</span>
+                </div>
+                <p class="veld-toelichting">Bovenstaande patiëntgegevens kunnen niet worden gewijzigd via dit formulier.</p>
+            </div>
+
+            <div class="veld-groep">
+                <label for="patientennummer">Patiëntnummer</label>
+                <div class="veld-wrapper">
+                    <input type="text" id="patientennummer" placeholder="Vul uw patiëntnummer in, bijv. '123456789'">
+                </div>
+            </div>
+
+            <!-- MEETGEGEVENS -->
+            <div class="sectie-titel">Meetgegevens</div>
+
+            <div class="twee-kolommen">
+                <div class="veld-groep">
+                    <label for="startdatum">Startdatum</label>
+                    <input type="date" id="startdatum" class="meetveld" readonly>
+                    <span class="veld-slot">&#128274;</span>
+                </div>
+                <div class="veld-groep">
+                    <label for="starttijd">Starttijd</label>
+                    <input type="time" id="starttijd" class="meetveld" readonly>
+                    <span class="veld-slot">&#128274;</span>
+                </div>
+            </div>
+
+            <div class="twee-kolommen">
+                <div class="veld-groep">
+                    <label for="einddatum">Einddatum</label>
+                    <input type="date" id="einddatum" class="meetveld" readonly>
+                    <span class="veld-slot">&#128274;</span>
+                </div>
+                <div class="veld-groep">
+                    <label for="eindtijd">Eindtijd</label>
+                    <input type="time" id="eindtijd" class="meetveld">
+                </div>
+            </div>
+
+            <!-- BOKALEN -->
+            <div class="sectie-titel">Hoeveelheid urine verzameld</div>
+
+            <div class="veld-groep">
+                <label for="bokaal1">Bokaal 1</label>
+                <div class="veld-ml-wrapper">
+                    <input type="number" id="bokaal1" class="meetveld" placeholder="0" min="0" step="1">
+                    <span class="ml-label">ml</span>
+                </div>
+            </div>
+
+            <div class="veld-groep">
+                <label for="bokaal2">Bokaal 2 <span class="optioneel">(indien aanwezig)</span></label>
+                <div class="veld-ml-wrapper">
+                    <input type="number" id="bokaal2" class="meetveld" placeholder="0" min="0" step="1">
+                    <span class="ml-label">ml</span>
+                </div>
+            </div>
+
+            <div class="veld-groep totaal-groep">
+                <label for="totaal">Totaal</label>
+                <div class="veld-ml-wrapper">
+                    <input type="number" id="totaal" class="meetveld totaal-input" placeholder="0" min="0" step="1" readonly>
+                    <span class="ml-label">ml</span>
+                </div>
+                <p class="veld-toelichting">Wordt automatisch berekend op basis van bokaal 1 + bokaal 2.</p>
+            </div>
+
+            <!-- FOUT- EN SUCCESBERICHT -->
+            <p id="fout-msg" class="error-msg">Er is een fout opgetreden. Probeer het opnieuw.</p>
+            <div id="succes-msg" class="succes-msg" style="display:none;">
+                &#10003; Gegevens succesvol opgeslagen.
+            </div>
+
+            <button class="btn-rood" id="opslaan-btn" onclick="opslaan()">Opslaan</button>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <div class="nav-item" onclick="window.location.href='/uitleg'">
+            <span class="nav-icon">&#9432;</span>
+            <span class="nav-label">Uitleg</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='/meting'">
+            <span class="nav-icon">&#43;</span>
+            <span class="nav-label">Nieuwe meting toevoegen</span>
+        </div>
+        <div class="nav-item nav-home" onclick="window.location.href='/homepagina'">
+            <div class="nav-home-circle">
+                <span class="nav-icon home-icon">&#8962;</span>
+            </div>
+            <span class="nav-label">Home</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='/herinnering'">
+            <span class="nav-icon">&#128276;</span>
+            <span class="nav-label">Nieuwe melding toevoegen</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='/help'">
+            <span class="nav-icon">&#63;</span>
+            <span class="nav-label">Help</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='/account'">
+            <span class="nav-icon">&#128100;</span>
+            <span class="nav-label">Account</span>
+        </div>
+    </nav>
+
+    <script src="{{ url_for('static', filename='javascript/formulier.js') }}"></script>
+</body>
+</html>
