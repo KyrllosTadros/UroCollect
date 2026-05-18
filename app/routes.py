@@ -310,7 +310,30 @@ def account_delete():
     return jsonify({"success": True, "message": "Account verwijderd."})
 
 # SESSIONS
+@main.route("/formulier")
+def formulier():
+    """Formulierpagina voor het invullen van meetgegevens."""
+    return render_template("formulier.html")
 
+@main.route("/formulier/data")
+def formulier_data():
+    """
+    Haalt patiëntgegevens en de meest recente actieve sessie op
+    voor het vooraf invullen van het formulier.
+    """
+    patient_id = session.get("patient_id")
+    if not patient_id:
+        return jsonify({"success": False, "message": "Niet ingelogd."}), 401
+
+    patient_result = supabase.table("patients")         .select("patient_id, name, date_of_birth")         .eq("patient_id", patient_id)         .execute()
+
+    session_result = supabase.table("sessions")         .select("*")         .eq("patient_id", patient_id)         .order("created_at", desc=True)         .limit(1)         .execute()
+
+    return jsonify({
+        "success": True,
+        "patient": patient_result.data[0] if patient_result.data else None,
+        "session": session_result.data[0] if session_result.data else None
+    })
 @main.route("/sessions")
 def get_sessions():
     """Haalt alle sessies op uit de database."""
