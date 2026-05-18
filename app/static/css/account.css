@@ -79,6 +79,24 @@
     margin-top: 8px;
 }
 
+/* Uitlogknop */
+
+.btn-grijs {
+
+    width: 100%;
+
+    background: #7f8c8d;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 12px;
+
+    font-size: 0.95rem;
+
 /* Iets extra ruimte onderaan de kaart zodat de bottom-nav niet ertegenaan plakt */
 .page-container {
     padding-bottom: 90px; /* als dit al bestaat, mag deze iets groter zijn dan op andere pagina's */

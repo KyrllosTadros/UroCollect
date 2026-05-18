@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("changePasswordBtn")
         .addEventListener("click", handleChangePassword);
 
+    document.getElementById("logoutBtn")
+        .addEventListener("click", handleLogout);
+
     document.getElementById("deleteAccountBtn")
         .addEventListener("click", handleDeleteAccount);
 });
@@ -120,4 +123,50 @@ async function handleDeleteAccount() {
         errorMsg.textContent = "Verbindingsfout bij het verwijderen van het account.";
         errorMsg.style.display = "block";
     }
+}
+
+// =====================================
+// Uitloggen
+// =====================================
+
+async function handleLogout() {
+
+    const bevestiging = confirm(
+        "Weet je zeker dat je wilt uitloggen?"
+    );
+
+    if (!bevestiging) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(
+                "/auth/logout",
+                {
+                    method: "POST"
+                }
+            );
+
+        if (!response.ok) {
+
+            alert(
+                "Uitloggen mislukt."
+            );
+
+            return;
+        }
+
+        // Naar inlogpagina
+        window.location.href = "/";
+
+    } catch (err) {
+
+        alert(
+            "Verbindingsfout bij uitloggen."
+        );
+
+    }
+
 }
