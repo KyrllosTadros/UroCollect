@@ -1,0 +1,116 @@
+/* ============================
+   Uitlegpagina specifieke stijl
+   ============================ */
+
+/* Iets meer ruimte onderin voor de bottom-nav */
+.page-container {
+    padding-bottom: 90px;
+}
+
+/* Hoofdtitel / intro van de uitlegkaart */
+.login-card h2 {
+    margin-bottom: 6px;
+    font-size: 1.3rem;
+    text-align: left;
+}
+
+.login-card > p {
+    margin-top: 0;
+    font-size: 0.95rem;
+    color: #1f425d;
+}
+
+/* Witte blokken binnen de oranje uitlegkaart
+   (in jouw HTML heten die nu .home-card) */
+.login-card .home-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 16px 14px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+    margin-top: 16px;
+
+    /* override van home.css */
+    display: block;
+    cursor: default;
+    min-height: auto;
+    transition: none;
+}
+
+/* Titel in het vraag-blok */
+.login-card .home-card p strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.98rem;
+    color: #111;
+}
+
+/* Tekst in de uitlegblokken */
+.login-card .home-card p {
+    margin: 4px 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #1f425d;
+
+    /* Zorg ervoor dat er GEEN meerdere kolommen ontstaan */
+    column-count: 1 !important;
+    column-gap: 0 !important;
+}
+
+/* Tip-blok (de onderste kaart met uitleg over het icoon).
+   Als je daarvoor een extra class wilt gebruiken, kun je
+   deze class ook toevoegen aan dat block: class="home-card uitleg-tip-card" */
+.uitleg-tip-card {
+    text-align: center;
+}
+
+/* Tekst in het tip-blok iets meer gecentreerd */
+.uitleg-tip-card p {
+    text-align: center;
+}
+
+/* Opvallende oranje knop onderaan de uitlegkaart */
+.btn-oranje {
+    background-color: #ff7a00;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 22px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+
+.btn-oranje:hover {
+    background-color: #ff9300;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+.btn-oranje:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Kleine aanpassingen voor kleine schermen */
+@media (max-width: 500px) {
+    .login-card h2 {
+        font-size: 1.15rem;
+    }
+
+    .login-card .home-card {
+        padding: 14px 12px;
+    }
+
+    .login-card .home-card p {
+        font-size: 0.85rem;
+    }
+
+    .btn-oranje {
+        font-size: 0.95rem;
+        padding: 11px 14px;
+    }
+}

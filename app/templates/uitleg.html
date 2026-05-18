@@ -1,16 +1,100 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Pagina</title>
+    <title>Amsterdam UMC - Uitleg</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='uitleg.css') }}">
 </head>
-
 <body>
 
-    <h1>Hier komt uitleg</h1>
+    <div class="page-container">
+        <div class="logo-section">
+            <h1>Amsterdam UMC</h1>
+        </div>
 
+        <!-- Titel / intro -->
+        <div class="login-card">
+            <h2>Welkom bij de online handleiding voor het verzamelen van 24-uurs urine.</h2>
+           
+
+            <!-- Blok 1: waarom goed verzamelen belangrijk is -->
+            <div class="home-card" style="margin-top: 16px;">
+                <p><strong>Waarom is het op de juiste manier verzamelen zo belangrijk?</strong></p>
+                <p>
+                    Op het moment dat u 24 uur urine gaat verzamelen, is het belangrijk dat dit
+                    goed gebeurt. U verzamelt al uw urine gedurende een hele dag en nacht.
+                </p>
+                <p>
+                    Als u in deze periode één keer vergeet uw urine op te vangen, is het onderzoek
+                    minder betrouwbaar. De arts wil met dit onderzoek inzicht krijgen in wat uw
+                    lichaam gedurende 24 uur uitscheidt.
+                </p>
+                <p>
+                    Wanneer er urine ontbreekt, klopt de uitslag niet meer en kan de arts geen
+                    goede conclusie trekken. Hierdoor kan het zijn dat er geen juiste behandeling
+                    kan worden bepaald.
+                </p>
+                <p>
+                    Daarom is het belangrijk dat u alle urine in deze 24 uur zorgvuldig opvangt
+                    en geen momenten overslaat.
+                </p>
+            </div>
+
+            <!-- Blok 2: uitleg over terug naar dit scherm -->
+            <div class="home-card" style="margin-top: 18px; text-align: center;">
+                <p><strong>U kunt altijd terug naar dit scherm</strong></p>
+                <p>
+                    Klik op het <span style="color:#d97c2b; font-weight:bold;">Uitleg‑icoon</span>
+                    linksonder in het scherm om hier terug te komen.
+                </p>
+            </div>
+
+            <!-- Oranje knop onderaan -->
+            <button type="button" id="startUitlegBtn" class="btn-oranje" style="margin-top: 22px; width: 100%;">
+                Begin met de uitleg over het onderzoek
+            </button>
+        </div>
+    </div>
+
+    <!-- Onderste navigatiebalk -->
+    <nav class="bottom-nav">
+        <div class="nav-item" data-nav-target="/uitleg">
+            <span class="nav-icon">&#9432;</span>
+            <span class="nav-label">Uitleg</span>
+        </div>
+
+        <div class="nav-item" data-nav-target="/meting">
+            <span class="nav-icon">&#43;</span>
+            <span class="nav-label">Nieuwe meting toevoegen</span>
+        </div>
+
+        <div class="nav-item nav-home" data-nav-target="/homepagina">
+            <div class="nav-home-circle">
+                <span class="nav-icon home-icon">&#8962;</span>
+            </div>
+            <span class="nav-label">Home</span>
+        </div>
+
+        <div class="nav-item" data-nav-target="/herinnering">
+            <span class="nav-icon">&#128276;</span>
+            <span class="nav-label">Nieuwe melding toevoegen</span>
+        </div>
+
+        <div class="nav-item" data-nav-target="/help">
+            <span class="nav-icon">&#63;</span>
+            <span class="nav-label">Help</span>
+        </div>
+
+        <div class="nav-item" data-nav-target="/account">
+            <span class="nav-icon">&#128100;</span>
+            <span class="nav-label">Account</span>
+        </div>
+    </nav>
+
+    <script src="{{ url_for('static', filename='javascript/home.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/uitleg.js') }}"></script>
 </body>
-
 </html>

@@ -106,7 +106,7 @@ document.getElementById("verifyBtn").addEventListener("click", async () => {
 
         if (data.success) {
             localStorage.setItem("patient_id", data.patient_id);
-            window.location.href = "/homepagina";
+            window.location.href = "/uitleg";
         } else {
             errorMsg.textContent = data.message;
             errorMsg.style.display = "block";

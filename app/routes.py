@@ -76,6 +76,16 @@ def account():
     """Render de accountpagina."""
     return render_template("account.html")
 
+@main.route("/uitleg2")
+def uitleg2():
+    """Render de tweede uitlegpagina."""
+    return render_template("uitleg2.html")
+
+@main.route("/uitleg2")
+def stap1():
+    """Render naar stap 1 uitleg."""
+    return render_template("stap1.html")
+
 
 # AUTHENTICATIE
 

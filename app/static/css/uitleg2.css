@@ -1,0 +1,280 @@
+/* Reset */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+/* Body */
+
+body{
+
+    font-family: Arial, sans-serif;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #f5f5f5,
+        #8fd46b
+    );
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+}
+
+
+/* Container */
+
+.page-container{
+
+    width:100%;
+    max-width:430px;
+
+    padding:20px;
+
+    position:relative;
+
+    min-height:100vh;
+}
+
+
+/* Browser balk */
+
+.browser-bar{
+
+    background:#707070;
+
+    color:white;
+
+    text-align:center;
+
+    padding:10px;
+
+    border-radius:20px;
+
+    width:85%;
+
+    margin:0 auto 20px;
+
+    font-size:0.9rem;
+
+    font-weight:bold;
+}
+
+
+/* Logo */
+
+.logo-section{
+
+    text-align:center;
+
+    margin-bottom:25px;
+}
+
+.logo-section h1{
+
+    color:#1f425d;
+
+    font-size:2.2rem;
+}
+
+
+/* Titel */
+
+.title-section{
+
+    text-align:center;
+
+    margin-bottom:30px;
+}
+
+.title-section h2{
+
+    color:#d97c2b;
+
+    font-size:2rem;
+}
+
+.title-section h3{
+
+    color:#d97c2b;
+
+    font-size:1.8rem;
+
+    line-height:1.2;
+}
+
+
+/* Cards */
+
+.question-card,
+.info-card,
+.help-card{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    box-shadow:
+    0px 4px 12px
+    rgba(0,0,0,0.15);
+
+    margin-bottom:18px;
+}
+
+
+/* Vraagkaart */
+
+.question-card{
+
+    text-align:center;
+}
+
+.question-card p{
+
+    font-size:1.2rem;
+
+    line-height:1.4;
+}
+
+
+/* Grote kaart */
+
+.info-card{
+
+    width:72%;
+
+    min-height:160px;
+}
+
+.info-card p{
+
+    font-size:1.1rem;
+
+    line-height:1.5;
+
+    font-weight:bold;
+}
+
+.arrow{
+
+    font-size:3rem;
+
+    text-align:right;
+
+    margin-top:10px;
+}
+
+
+/* Help kaart */
+
+.help-card{
+
+    width:58%;
+
+    color:#d97c2b;
+
+    font-weight:bold;
+
+    text-align:center;
+}
+
+
+/* Afbeelding */
+
+.image-section{
+
+    position:absolute;
+
+    right:15px;
+
+    bottom:120px;
+}
+
+.image-section img{
+
+    width:150px;
+
+    max-width:100%;
+}
+
+
+/* Button */
+
+.btn-oranje{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#d97c2b;
+
+    color:white;
+
+    font-size:1.1rem;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    margin-top:25px;
+
+    box-shadow:
+    0px 4px 10px
+    rgba(0,0,0,0.2);
+}
+
+
+/* Responsive */
+
+@media (max-width:500px){
+
+    .logo-section h1{
+        font-size:1.8rem;
+    }
+
+    .title-section h2{
+        font-size:1.7rem;
+    }
+
+    .title-section h3{
+        font-size:1.4rem;
+    }
+
+    .info-card{
+
+        width:100%;
+    }
+
+    .help-card{
+
+        width:100%;
+    }
+
+    .image-section{
+
+        position:relative;
+
+        right:auto;
+        bottom:auto;
+
+        text-align:center;
+
+        margin-top:-10px;
+    }
+
+    .image-section img{
+
+        width:130px;
+    }
+}

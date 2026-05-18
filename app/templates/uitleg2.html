@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amsterdam UMC - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='uitleg2.css') }}">
+</head>
+
+<body>
+
+    <div class="page-container">
+
+
+        <!-- Logo -->
+        <div class="logo-section">
+            <h1>Amsterdam UMC</h1>
+        </div>
+
+        <!-- Titel -->
+        <div class="title-section">
+
+            <h2>
+                Voorbereiding:
+            </h2>
+
+            <h3>
+                Een goed begin is het halve werk!
+            </h3>
+
+        </div>
+
+        <!-- Vraag kaart -->
+        <div class="question-card">
+
+            <p>
+                <strong>
+                    Wat heeft u nodig om deze
+                    24 uurs urine collectie
+                    tot een succes te maken?
+                </strong>
+            </p>
+
+        </div>
+
+        <!-- Grote uitleg kaart -->
+        <div class="info-card">
+
+            <p>
+                ✓ Een urinebokaal om de urine in op te vangen.
+                Dit is een bruine vierkante verzamel fles
+                zoals op de afbeelding hiernaast.
+            </p>
+
+            <div class="arrow">
+                ↘
+            </div>
+
+        </div>
+
+        <!-- Kleine kaart -->
+        <div class="help-card">
+
+            <p>
+                Wat u moet doen als deze bokaal vol is
+                leest u op de help ❓ pagina.
+            </p>
+
+        </div>
+
+        <!-- Afbeelding -->
+        <div class="image-section">
+
+            <img
+                 src="{{ url_for(
+            'static',
+            filename='images/Container Uricollect.jpeg'
+        ) }}"
+        alt="Urinecontainer"
+            >
+
+        </div>
+
+        <!-- Verder knop -->
+        <button
+            id="nextBtn"
+            class="btn-oranje"
+        >
+            Verder
+        </button>
+
+    </div>
+
+    <!-- JS -->
+    <script
+        src="{{ url_for('static', filename='javascript/uitleg2.js') }}"
+    ></script>
+
+</body>
+
+</html>
