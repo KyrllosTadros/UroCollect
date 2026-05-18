@@ -11,3 +11,4 @@ venv/
 # IDE-bestanden
 .vscode/
 *.pyc
+/app/__pycache__
