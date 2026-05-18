@@ -4,16 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amsterdam UMC - Home</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/uitleg2.css') }}">
+    <title>Amsterdam UMC - Uitleg 2</title>
+
+    <!-- Algemene styles -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <!-- Eventuele gedeelde home-styles -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/home.css') }}"
+    >
+
+    <!-- Pagina-specifieke styles voor uitleg2 -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/uitleg2.css') }}"
+    >
 </head>
 
 <body>
 
     <div class="page-container">
-
 
         <!-- Logo -->
         <div class="logo-section">
@@ -51,12 +65,12 @@
 
             <p>
                 ✓ Een urinebokaal om de urine in op te vangen.
-                Dit is een bruine vierkante verzamel fles
+                Dit is een vierkante verzamel fles
                 zoals op de afbeelding hiernaast.
             </p>
 
             <div class="arrow">
-                ↘
+                ↙
             </div>
 
         </div>
@@ -66,7 +80,7 @@
 
             <p>
                 Wat u moet doen als deze bokaal vol is
-                leest u op de help ❓ pagina.
+                leest u op de help <span class="nav-icon">?</span> pagina.
             </p>
 
         </div>
@@ -75,30 +89,67 @@
         <div class="image-section">
 
             <img
-                 src="{{ url_for(
-            'static',
-            filename='images/Container Uricollect.jpeg'
-        ) }}"
-        alt="Urinecontainer"
+                src="{{ url_for('static', filename='images/Container Uricollect.jpeg') }}"
+                alt="Urinecontainer"
             >
 
         </div>
 
-        <!-- Verder knop -->
-        <button
-            id="nextBtn"
-            class="btn-oranje"
-        >
-            Verder
-        </button>
+        <!-- Knoppen onderin: terug + naar stap 1 -->
+        <div class="button-row">
+
+            <!-- Terug-knop (links) -->
+            <button
+                id="backBtn"
+                class="btn-wit"
+                type="button"
+            >
+                ← Terug
+            </button>
+
+            <!-- Verder / stap 1 (rechts) -->
+            <button
+                id="nextBtn"
+                class="btn-oranje"
+                type="button"
+            >
+                Naar stap 1
+            </button>
+
+        </div>
 
     </div>
 
-    <!-- JS -->
-    <script
-        src="{{ url_for('static', filename='javascript/uitleg2.js') }}"
-    ></script>
-
+    <!-- Onderste navigatiebalk -->
+    <nav class="bottom-nav">
+        <div class="nav-item" onclick="window.location.href='/uitleg'">
+            <span class="nav-icon">&#9432;</span>
+            <span class="nav-label">Uitleg</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='/meting'">
+            <span class="nav-icon">&#43;</span>
+            <span class="nav-label">Nieuwe meting toevoegen</span>
+        </div>
+        <div class="nav-item nav-home" onclick="window.location.href='/homepagina'">
+            <div class="nav-home-circle">
+            <span class="nav-icon home-icon">&#8962;</span>
+        </div>
+            <span class="nav-label">Home</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='/herinnering'">
+            <span class="nav-icon">&#128276;</span>
+            <span class="nav-label">Nieuwe melding toevoegen</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='/help'">
+            <span class="nav-icon">&#63;</span>
+            <span class="nav-label">Help</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='/account'">
+            <span class="nav-icon">&#128100;</span>
+            <span class="nav-label">Account</span>
+        </div>
+    </nav>
+    <script src="{{ url_for('static', filename='javascript/home.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/uitleg2.js') }}"></script>
 </body>
-
 </html>

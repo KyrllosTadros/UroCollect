@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Amsterdam UMC - Stap 3</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/home.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/stap3.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="page-container">
+
+    <div class="logo-section">
+        <h1>Amsterdam UMC</h1>
+    </div>
+
+    <h2 class="stap-title">
+        Hoe verzamelt u uw urine
+        op de juiste manier?
+    </h2>
+
+    <div class="stap-card">
+
+        <p>
+
+            <strong>3.</strong>
+
+        Verzamel de urine
+        van de rest van de dag,
+        avond en nacht
+        in de bokaal.
+
+        <br><br>
+
+        Plas direct in de bokaal
+        of eerst in een schone
+        po of maatbeker.
+
+        <br><br>
+
+        Zorg ervoor dat u
+        geen plas verliest
+        tijdens het overgieten.
+
+        </p>
+
+    </div>
+
+    <div class="button-row">
+
+        <button
+            id="backBtn"
+            class="btn-wit"
+        >
+            ← Terug
+        </button>
+
+        <button
+            id="nextBtn"
+            class="btn-oranje"
+        >
+            Stap 4 →
+        </button>
+
+    </div>
+
+</div>
+
+<nav class="bottom-nav">
+    <div class="nav-item">
+        <span class="nav-icon">&#9432;</span>
+        <span class="nav-label">Uitleg</span>
+    </div>
+
+    <div class="nav-item">
+        <span class="nav-icon">&#43;</span>
+        <span class="nav-label">
+            Nieuwe meting toevoegen
+        </span>
+    </div>
+
+    <div class="nav-item nav-home">
+        <div class="nav-home-circle">
+            <span class="nav-icon home-icon">
+                &#8962;
+            </span>
+        </div>
+        <span class="nav-label">Home</span>
+    </div>
+
+    <div class="nav-item">
+        <span class="nav-icon">
+            &#128276;
+        </span>
+        <span class="nav-label">
+            Nieuwe melding toevoegen
+        </span>
+    </div>
+
+    <div class="nav-item">
+        <span class="nav-icon">
+            &#63;
+        </span>
+        <span class="nav-label">
+            Help
+        </span>
+    </div>
+</nav>
+
+<script
+src="{{ url_for('static',
+filename='javascript/stap3.js') }}">
+</script>
+
+</body>
+</html>

@@ -1,34 +1,8 @@
-/* Reset */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-
-/* Body */
-
-body{
-
-    font-family: Arial, sans-serif;
-
-    background:
-    linear-gradient(
-        to bottom,
-        #f5f5f5,
-        #8fd46b
-    );
-
-    min-height:100vh;
-
-    display:flex;
-    justify-content:center;
-}
-
+/* ================================
+   Uitleg2 pagina-specifieke styles
+   ================================ */
 
 /* Container */
-
 .page-container{
 
     width:100%;
@@ -36,35 +10,16 @@ body{
 
     padding:20px;
 
+    /* extra ruimte onderin zodat knoppen
+       boven de bottom-nav vallen */
+    padding-bottom:110px;
+
     position:relative;
 
     min-height:100vh;
+
+    margin:0 auto;
 }
-
-
-/* Browser balk */
-
-.browser-bar{
-
-    background:#707070;
-
-    color:white;
-
-    text-align:center;
-
-    padding:10px;
-
-    border-radius:20px;
-
-    width:85%;
-
-    margin:0 auto 20px;
-
-    font-size:0.9rem;
-
-    font-weight:bold;
-}
-
 
 /* Logo */
 
@@ -73,6 +28,8 @@ body{
     text-align:center;
 
     margin-bottom:25px;
+
+    margin-top:10px;
 }
 
 .logo-section h1{
@@ -82,8 +39,7 @@ body{
     font-size:2.2rem;
 }
 
-
-/* Titel */
+/* Titelsectie */
 
 .title-section{
 
@@ -108,8 +64,7 @@ body{
     line-height:1.2;
 }
 
-
-/* Cards */
+/* Kaarten */
 
 .question-card,
 .info-card,
@@ -128,7 +83,6 @@ body{
     margin-bottom:18px;
 }
 
-
 /* Vraagkaart */
 
 .question-card{
@@ -143,14 +97,16 @@ body{
     line-height:1.4;
 }
 
-
-/* Grote kaart */
+/* Grote uitlegkaart */
 
 .info-card{
 
     width:72%;
 
     min-height:160px;
+
+    margin-left:auto;
+    margin-right:auto;
 }
 
 .info-card p{
@@ -171,7 +127,6 @@ body{
     margin-top:10px;
 }
 
-
 /* Help kaart */
 
 .help-card{
@@ -183,18 +138,19 @@ body{
     font-weight:bold;
 
     text-align:center;
+
+    margin-left:auto;
+    margin-right:auto;
 }
 
-
-/* Afbeelding */
+/* Afbeelding in het midden onder de kaarten */
 
 .image-section{
 
-    position:absolute;
+    text-align:center;
 
-    right:15px;
-
-    bottom:120px;
+    margin-top:10px;
+    margin-bottom:20px;
 }
 
 .image-section img{
@@ -204,12 +160,52 @@ body{
     max-width:100%;
 }
 
+/* Knoppen-rij onderin (boven bottom-nav) */
 
-/* Button */
+.button-row{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:10px;
+
+    /* zorgt dat ze niet tegen de onderrand plakken */
+    margin-bottom:10px;
+}
+
+/* Witte terug-knop */
+
+.btn-wit{
+
+    flex:1;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    border:2px solid #d97c2b;
+
+    background:white;
+
+    color:#d97c2b;
+
+    font-size:1.1rem;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+    0px 4px 10px
+    rgba(0,0,0,0.1);
+}
+
+/* Oranje knop (naar stap 1) */
 
 .btn-oranje{
 
-    width:100%;
+    flex:1;
 
     padding:16px;
 
@@ -227,15 +223,12 @@ body{
 
     cursor:pointer;
 
-    margin-top:25px;
-
     box-shadow:
     0px 4px 10px
     rgba(0,0,0,0.2);
 }
 
-
-/* Responsive */
+/* Responsive aanpassingen voor kleinere schermen */
 
 @media (max-width:500px){
 
@@ -252,29 +245,14 @@ body{
     }
 
     .info-card{
-
         width:100%;
     }
 
     .help-card{
-
         width:100%;
     }
 
-    .image-section{
-
-        position:relative;
-
-        right:auto;
-        bottom:auto;
-
-        text-align:center;
-
-        margin-top:-10px;
-    }
-
     .image-section img{
-
         width:130px;
     }
 }
