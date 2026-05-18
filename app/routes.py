@@ -46,6 +46,31 @@ def verifieer_2fa_page():
     """Render de 2FA verificatiepagina."""
     return render_template("verifieer_2fa.html")
 
+@main.route("/homepagina")
+def homepagina():
+    """Render de homepagina."""
+    return render_template("homepagina.html")
+
+@main.route("/herinnering")
+def herinnering():
+    """Render de herinneringpagina."""
+    return render_template("herinnering.html")
+
+@main.route("/uitleg")
+def uitleg():
+    """Render de uitlegpagina."""
+    return render_template("uitleg.html")
+
+@main.route("/meting")
+def meting():
+    """Render de metingpagina."""
+    return render_template("meting.html")
+
+@main.route("/help")
+def help():
+    """Render de helppagina."""
+    return render_template("help.html")
+
 
 # AUTHENTICATIE
 

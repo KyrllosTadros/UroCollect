@@ -1,0 +1,123 @@
+/* Welkomstekst */
+.home-welkom {
+    text-align: center;
+    color: #d97c2b;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+/* Grid met 4 kaarten */
+.home-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+/* Individuele kaart */
+.home-card {
+    background: white;
+    border-radius: 14px;
+    padding: 18px 14px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    min-height: 120px;
+    display: flex;
+    align-items: flex-start;
+}
+.home-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.18);
+}
+.home-card:active {
+    transform: translateY(0px);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+}
+.home-card p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #1f425d;
+}
+.home-card p strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+    color: #111;
+}
+/* Onderstebalk navigatie */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0 10px;
+    box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.12);
+    z-index: 100;
+}
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    flex: 1;
+    gap: 3px;
+    transition: color 0.15s;
+    color: #555;
+}
+.nav-item:hover {
+    color: #1f425d;
+}
+.nav-icon {
+    font-size: 1.3rem;
+    line-height: 1;
+}
+.nav-label {
+    font-size: 0.62rem;
+    text-align: center;
+    max-width: 60px;
+    line-height: 1.2;
+}
+/* Home-knop in het midden */
+.nav-home {
+    background: #8fd46b;
+    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+    margin-top: -22px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 54px;
+}
+.nav-home:hover {
+    background: #7ac458;
+}
+.home-icon {
+    font-size: 1.6rem;
+    color: white;
+}
+/* Ruimte onderaan zodat content niet achter de nav valt */
+.page-container {
+    padding-bottom: 80px;
+}
+/* Responsive */
+@media (max-width: 500px) {
+    .home-welkom {
+        font-size: 1.2rem;
+    }
+    .home-card {
+        padding: 14px 10px;
+        min-height: 100px;
+    }
+    .home-card p {
+        font-size: 0.82rem;
+    }
+    .nav-label {
+        font-size: 0.58rem;
+    }
+}
