@@ -320,46 +320,51 @@ def get_sessions():
 @main.route("/sessions/add", methods=["POST"])
 def add_session():
     """
-    Maakt een nieuwe sessie aan voor een patiënt.
+    Maakt een nieuwe sessie aan voor de ingelogde patiënt.
+    Alleen de meegestuurde velden worden in de database opgeslagen.
+    De patient_id wordt uit de Flask-sessie gehaald.
     """
-    data = request.json
+    patient_id = session.get("patient_id")
+    if not patient_id:
+        return jsonify({"success": False, "message": "Niet ingelogd."}), 401
 
-    supabase.table("sessions").insert({
-        "patient_id": data["patient_id"],
-        "startdate": data["startdate"],
-        "enddate": data["enddate"],
-        "starttime": data["starttime"],
-        "endtime": data["endtime"],
-        "bottle1_ml": data["bottle1_ml"],
-        "bottle2_ml": data.get("bottle2_ml"),
-        "total_ml": data["total_ml"],
-        "type": data["type"],
-        "status": data.get("status", "actief")
-    }).execute()
+    data = request.json or {}
 
-    return {"message": "Session created"}
+    # Verplichte velden
+    record = {"patient_id": patient_id}
+
+    # Optionele velden: alleen toevoegen als ze in de request zitten
+    optionele_velden = [
+        "startdate", "enddate", "starttime", "endtime",
+        "bottle1_ml", "bottle2_ml", "total_ml", "type", "status"
+    ]
+    for veld in optionele_velden:
+        if veld in data:
+            record[veld] = data[veld]
+
+    result = supabase.table("sessions").insert(record).execute()
+    session_id = result.data[0]["session_id"] if result.data else None
+
+    return jsonify({"success": True, "message": "Session created", "session_id": session_id})
 
 
 @main.route("/sessions/update/<session_id>", methods=["PUT"])
 def update_session(session_id):
     """
     Werkt een bestaande sessie bij.
+    Alleen de meegestuurde velden worden bijgewerkt (partial update).
     """
-    data = request.json
+    data = request.json or {}
 
-    supabase.table("sessions").update({
-        "startdate": data.get("startdate"),
-        "enddate": data.get("enddate"),
-        "starttime": data.get("starttime"),
-        "endtime": data.get("endtime"),
-        "bottle1_ml": data.get("bottle1_ml"),
-        "bottle2_ml": data.get("bottle2_ml"),
-        "total_ml": data.get("total_ml"),
-        "type": data.get("type"),
-        "status": data.get("status")
-    }).eq("session_id", session_id).execute()
+    # Filter None-waarden eruit zodat bestaande DB-waarden niet worden overschreven
+    updates = {k: v for k, v in data.items() if v is not None}
 
-    return {"message": "Session updated"}
+    if not updates:
+        return jsonify({"success": False, "message": "Geen velden om bij te werken."}), 400
+
+    supabase.table("sessions").update(updates).eq("session_id", session_id).execute()
+
+    return jsonify({"success": True, "message": "Session updated"})
 
 
 @main.route("/sessions/delete/<session_id>", methods=["DELETE"])

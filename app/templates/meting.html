@@ -1,16 +1,125 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Pagina</title>
+    <title>Amsterdam UMC - Meting</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/meting.css') }}">
 </head>
-
 <body>
+    <div class="page-container">
+        <div class="logo-section">
+            <h1>Amsterdam UMC</h1>
+        </div>
 
-    <h1>Hier komt meting</h1>
+        <!-- Startscherm -->
+        <div id="startscherm">
+            <div class="meting-card">
+                <h2>Meting starten</h2>
+                <p class="meting-intro">
+                    Klaar om uw 24-uursmeting te beginnen? Zodra u op de knop drukt, starten we de timer en slaan we uw gegevens op.
+                </p>
+                <div class="uitleg-banner" onclick="window.location.href='/uitleg'">
+                    <span class="uitleg-icon">&#9432;</span>
+                    <span>Nog niet bekend met de meting? <strong>Lees eerst de uitleg</strong></span>
+                    <span class="uitleg-arrow">&#8250;</span>
+                </div>
+                <div class="info-blokken">
+                    <div class="info-blok">
+                        <span class="info-blok-icon">&#128337;</span>
+                        <span>Duur: <strong>24 uur</strong></span>
+                    </div>
+                    <div class="info-blok">
+                        <span class="info-blok-icon">&#128197;</span>
+                        <span>Start: <strong id="start-datum-preview">—</strong></span>
+                    </div>
+                    <div class="info-blok">
+                        <span class="info-blok-icon">&#128197;</span>
+                        <span>Einde: <strong id="eind-datum-preview">—</strong></span>
+                    </div>
+                </div>
+                <p id="start-error" class="error-msg">Er is een fout opgetreden. Probeer het opnieuw.</p>
+                <button class="btn-rood" id="start-btn" onclick="startMeting()">Meting starten</button>
+            </div>
+        </div>
 
+        <!-- Actieve meting scherm -->
+        <div id="actiefscherm" style="display:none;">
+            <div class="meting-card actief">
+                <div class="actief-header">
+                    <span class="puls-dot"></span>
+                    <h2>Meting actief</h2>
+                </div>
+                <div class="timer-sectie">
+                    <p class="timer-label">Resterende tijd</p>
+                    <div class="timer-display" id="timer-display">23:59:59</div>
+                    <div class="voortgang-balk-wrapper">
+                        <div class="voortgang-balk" id="voortgang-balk"></div>
+                    </div>
+                </div>
+                <div class="tijden-grid">
+                    <div class="tijd-blok">
+                        <span class="tijd-blok-label">Gestart op</span>
+                        <span class="tijd-blok-waarde" id="gestart-datum">—</span>
+                        <span class="tijd-blok-tijd" id="gestart-tijd">—</span>
+                    </div>
+                    <div class="tijd-blok">
+                        <span class="tijd-blok-label">Eindigt op</span>
+                        <span class="tijd-blok-waarde" id="eind-datum">—</span>
+                        <span class="tijd-blok-tijd" id="eind-tijd">—</span>
+                    </div>
+                </div>
+                <div class="uitleg-banner" onclick="window.location.href='/uitleg'">
+                    <span class="uitleg-icon">&#9432;</span>
+                    <span>Uitleg over de meting bekijken</span>
+                    <span class="uitleg-arrow">&#8250;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meting voltooid scherm -->
+        <div id="voltooischerm" style="display:none;">
+            <div class="meting-card voltooid">
+                <div class="voltooid-icoon">&#10003;</div>
+                <h2>Meting voltooid!</h2>
+                <p class="meting-intro">Uw 24-uursmeting is afgerond. Bedankt voor het zorgvuldig uitvoeren van de meting.</p>
+                <button class="btn-blauw" onclick="window.location.href='/homepagina'">Terug naar home</button>
+            </div>
+        </div>
+
+    </div>
+
+    <nav class="bottom-nav">
+        <div class="nav-item" onclick="window.location.href='/uitleg'">
+            <span class="nav-icon">&#9432;</span>
+            <span class="nav-label">Uitleg</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='/meting'">
+            <span class="nav-icon">&#43;</span>
+            <span class="nav-label">Nieuwe meting toevoegen</span>
+        </div>
+        <div class="nav-item nav-home" onclick="window.location.href='/homepagina'">
+            <div class="nav-home-circle">
+                <span class="nav-icon home-icon">&#8962;</span>
+            </div>
+            <span class="nav-label">Home</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='/herinnering'">
+            <span class="nav-icon">&#128276;</span>
+            <span class="nav-label">Nieuwe melding toevoegen</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='/help'">
+            <span class="nav-icon">&#63;</span>
+            <span class="nav-label">Help</span>
+        </div>
+        <div class="nav-item" onclick="window.location.href='/account'">
+            <span class="nav-icon">&#128100;</span>
+            <span class="nav-label">Account</span>
+        </div>
+    </nav>
+
+    <script src="{{ url_for('static', filename='javascript/meting.js') }}"></script>
 </body>
-
 </html>

@@ -7,7 +7,7 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-    const START_KEY = "uitleg_completed";  
+    const START_KEY = "uitleg_completed";
     const startBtn = document.getElementById("startUitlegBtn");
     const navItems = document.querySelectorAll(".bottom-nav .nav-item");
 

@@ -1,0 +1,219 @@
+/* Meting card basisstijl */
+.meting-card {
+    background: white;
+    border-radius: 14px;
+    padding: 28px 22px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.13);
+    margin-bottom: 20px;
+}
+
+.meting-card h2 {
+    color: #1f425d;
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+.meting-intro {
+    color: #444;
+    font-size: 0.93rem;
+    line-height: 1.55;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Uitleg banner */
+.uitleg-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #eef7e8;
+    border: 1.5px solid #8fd46b;
+    border-radius: 10px;
+    padding: 13px 16px;
+    margin-bottom: 22px;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-size: 0.88rem;
+    color: #1f425d;
+}
+
+.uitleg-banner:hover {
+    background: #dff0d0;
+}
+
+.uitleg-icon {
+    font-size: 1.2rem;
+    color: #5aab2e;
+    flex-shrink: 0;
+}
+
+.uitleg-banner span:nth-child(2) {
+    flex: 1;
+}
+
+.uitleg-arrow {
+    font-size: 1.3rem;
+    color: #5aab2e;
+    flex-shrink: 0;
+}
+
+/* Info blokken voor startscherm */
+.info-blokken {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.info-blok {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f7f9fc;
+    border-radius: 9px;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.info-blok-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+/* Actieve meting stijlen */
+.meting-card.actief {
+    border-top: 4px solid #8fd46b;
+}
+
+.actief-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.actief-header h2 {
+    margin-bottom: 0;
+    color: #1f425d;
+}
+
+/* Pulserende groene stip */
+.puls-dot {
+    width: 12px;
+    height: 12px;
+    background: #5aab2e;
+    border-radius: 50%;
+    display: inline-block;
+    animation: puls 1.4s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes puls {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.45; transform: scale(1.35); }
+}
+
+/* Timer */
+.timer-sectie {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.timer-label {
+    color: #888;
+    font-size: 0.82rem;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.timer-display {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #1f425d;
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 14px;
+}
+
+/* Voortgangsbalk */
+.voortgang-balk-wrapper {
+    background: #e8e8e8;
+    border-radius: 99px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.voortgang-balk {
+    height: 100%;
+    background: #8fd46b;
+    border-radius: 99px;
+    width: 0%;
+    transition: width 1s linear;
+}
+
+/* Start / eind tijden grid */
+.tijden-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.tijd-blok {
+    background: #f7f9fc;
+    border-radius: 10px;
+    padding: 13px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+}
+
+.tijd-blok-label {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.tijd-blok-waarde {
+    font-size: 0.92rem;
+    font-weight: bold;
+    color: #1f425d;
+}
+
+.tijd-blok-tijd {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+/* Voltooid scherm */
+.meting-card.voltooid {
+    text-align: center;
+    border-top: 4px solid #8fd46b;
+}
+
+.voltooid-icoon {
+    width: 64px;
+    height: 64px;
+    background: #8fd46b;
+    border-radius: 50%;
+    color: white;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+}
+
+.meting-card.voltooid h2 {
+    margin-bottom: 14px;
+}
+
+.meting-card.voltooid button {
+    margin-top: 10px;
+}
