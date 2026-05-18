@@ -71,6 +71,11 @@ def help():
     """Render de helppagina."""
     return render_template("help.html")
 
+@main.route("/account")
+def account():
+    """Render de accountpagina."""
+    return render_template("account.html")
+
 
 # AUTHENTICATIE
 
@@ -231,6 +236,68 @@ def change_password(patient_id):
 
     return {"message": "Password updated"}
 
+# ACCOUNT
+
+@main.route("/account/data")
+def account_data():
+    """
+    Geeft de gegevens van de ingelogde patiënt terug (naam, email, geboortedatum).
+    """
+    patient_id = session.get("patient_id")
+    if not patient_id:
+        return jsonify({"success": False, "message": "Niet ingelogd."}), 401
+
+    result = supabase.table("patients") \
+        .select("patient_id, name, email, date_of_birth") \
+        .eq("patient_id", patient_id) \
+        .execute()
+
+    if not result.data:
+        return jsonify({"success": False, "message": "Account niet gevonden."}), 404
+
+    return jsonify({"success": True, "patient": result.data[0]})
+
+
+@main.route("/account/change-password", methods=["PUT"])
+def account_change_password():
+    """
+    Wijzigt het wachtwoord van de ingelogde patiënt.
+    """
+    patient_id = session.get("patient_id")
+    if not patient_id:
+        return jsonify({"success": False, "message": "Niet ingelogd."}), 401
+
+    data = request.json or {}
+    new_password = (data.get("new_password") or "").strip()
+
+    if len(new_password) < 6:
+        return jsonify({
+            "success": False,
+            "message": "Wachtwoord moet minimaal 6 tekens bevatten."
+        }), 400
+
+    new_hash = hash_password(new_password)
+
+    supabase.table("patients").update({
+        "password_hash": new_hash
+    }).eq("patient_id", patient_id).execute()
+
+    return jsonify({"success": True, "message": "Wachtwoord bijgewerkt."})
+
+
+@main.route("/account/delete", methods=["DELETE"])
+def account_delete():
+    """
+    Verwijdert het account van de ingelogde patiënt en logt uit.
+    """
+    patient_id = session.get("patient_id")
+    if not patient_id:
+        return jsonify({"success": False, "message": "Niet ingelogd."}), 401
+
+    supabase.table("patients").delete().eq("patient_id", patient_id).execute()
+    session.clear()
+
+    return jsonify({"success": True, "message": "Account verwijderd."})
 
 # SESSIONS
 

@@ -16,9 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
      const navKoppeling = [
         { pad: "uitleg", index: 0 },
         { pad: "meting", index: 1 },
-        { pad: "home", index: 2 },
+        { pad: "homepagina", index: 2 },
         { pad: "herinnering", index: 3 },
         { pad: "help", index: 4 },
+        { pad: "account", index: 5 } 
     ];
 
     const navItems = document.querySelectorAll(".nav-item");

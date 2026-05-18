@@ -1,0 +1,100 @@
+/* ============================
+   Accountpagina specifieke stijl
+   ============================ */
+
+/* Kopjes binnen de account-kaart */
+.login-card h2 {
+    margin-bottom: 15px;
+}
+
+.login-card h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #1f425d;
+}
+
+/* Tekstregels met accountgegevens */
+.login-card p {
+    margin: 4px 0;
+    color: #1f425d;
+    font-size: 0.95rem;
+}
+
+.login-card p strong {
+    font-weight: 600;
+}
+
+/* Scheidingslijnen */
+.login-card hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.login-card hr:first-of-type {
+    margin-bottom: 35px;  /* maak groter/kleiner naar smaak */
+}
+
+/* Input-groepen (zelfde stijl als login/registratie) */
+.login-card .input-group {
+    margin-bottom: 14px;
+}
+
+.login-card .input-group label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.login-card .input-group input {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+
+/* Fout- en succesmeldingen */
+.error-msg {
+    color: #c0392b;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    display: none;
+}
+
+.success-msg {
+    color: #27ae60;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    display: none;
+}
+
+/* Buttons op de accountpagina */
+#changePasswordBtn,
+#deleteAccountBtn {
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* Iets extra ruimte onderaan de kaart zodat de bottom-nav niet ertegenaan plakt */
+.page-container {
+    padding-bottom: 90px; /* als dit al bestaat, mag deze iets groter zijn dan op andere pagina's */
+}
+
+/* Optioneel: iets kleinere titel op kleine schermen */
+@media (max-width: 500px) {
+    .login-card h2 {
+        font-size: 1.2rem;
+    }
+
+    .login-card h3 {
+        font-size: 0.95rem;
+    }
+
+    .login-card p {
+        font-size: 0.9rem;
+    }
+}

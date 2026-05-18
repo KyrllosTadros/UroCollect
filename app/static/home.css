@@ -68,9 +68,7 @@
     transition: color 0.15s;
     color: #555;
 }
-.nav-item:hover {
-    color: #1f425d;
-}
+
 .nav-icon {
     font-size: 1.3rem;
     line-height: 1;
@@ -83,18 +81,20 @@
 }
 /* Home-knop in het midden */
 .nav-home {
+    margin-top: 0px;  /* hoger/lager zetten kan door deze waarde aan te passen */
+    align-items: center;
+}
+.nav-home-circle {
     background: #8fd46b;
     border-radius: 50%;
     width: 54px;
     height: 54px;
-    margin-top: -22px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 0 0 54px;
 }
-.nav-home:hover {
+.nav-home-circle:hover {
     background: #7ac458;
 }
 .home-icon {

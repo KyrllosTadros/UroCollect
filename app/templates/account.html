@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amsterdam UMC - Mijn account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='account.css') }}">   
+</head>
+<body>
+
+    <div class="page-container">
+        <div class="logo-section">
+            <h1>Amsterdam UMC</h1>
+        </div>
+
+        <div class="login-card">
+            <h2>Mijn account</h2>
+
+            <!-- Mijn gegevens -->
+            <h3>Mijn gegevens</h3>
+            <p><strong>Naam:</strong> <span id="account-name">-</span></p>
+            <p><strong>E-mailadres:</strong> <span id="account-email">-</span></p>
+            <p><strong>Geboortedatum:</strong> <span id="account-dob">-</span></p>
+
+            <hr>
+
+            <!-- Wachtwoord wijzigen -->
+            <h3>Wachtwoord wijzigen</h3>
+            <div class="input-group">
+                <label for="new-password">Nieuw wachtwoord</label>
+                <input type="password" id="new-password" placeholder="Nieuw wachtwoord (min. 6 tekens)">
+            </div>
+
+            <button type="button" id="changePasswordBtn" class="btn-blauw">
+                Wachtwoord wijzigen
+            </button>
+
+            <hr>
+
+            <!-- Account verwijderen -->
+            <h3>Account verwijderen</h3>
+            <p>
+                Let op: als je je account verwijdert, gaan al je gegevens in deze app verloren.
+            </p>
+            <button type="button" id="deleteAccountBtn" class="btn-rood">
+                Account definitief verwijderen
+            </button>
+
+            <p id="account-error-msg" class="error-msg" style="display:none;"></p>
+            <p id="account-success-msg" class="success-msg" style="display:none;"></p>
+        </div>
+    </div>
+
+    <!-- Zelfde bottom-nav als op de homepagina, inclusief account-icoon -->
+    <nav class="bottom-nav">
+        <div class="nav-item" onclick="window.location.href='/uitleg'">
+            <span class="nav-icon">&#9432;</span>
+            <span class="nav-label">Uitleg</span>
+        </div>
+
+        <div class="nav-item" onclick="window.location.href='/meting'">
+            <span class="nav-icon">&#43;</span>
+            <span class="nav-label">Nieuwe meting toevoegen</span>
+        </div>
+
+        <div class="nav-item nav-home" onclick="window.location.href='/homepagina'">
+        <div class="nav-home-circle">
+            <span class="nav-icon home-icon">&#8962;</span>
+        </div>
+        <span class="nav-label">Home</span>
+    </div>
+
+        <div class="nav-item" onclick="window.location.href='/herinnering'">
+            <span class="nav-icon">&#128276;</span>
+            <span class="nav-label">Nieuwe melding toevoegen</span>
+        </div>
+
+        <div class="nav-item" onclick="window.location.href='/help'">
+            <span class="nav-icon">&#63;</span>
+            <span class="nav-label">Help</span>
+        </div>
+
+        <div class="nav-item" onclick="window.location.href='/account'">
+            <span class="nav-icon">&#128100;</span>
+            <span class="nav-label">Account</span>
+        </div>
+    </nav>
+
+    <script src="{{ url_for('static', filename='javascript/home.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/account.js') }}"></script>
+</body>
+</html>
