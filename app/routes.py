@@ -318,32 +318,36 @@ def get_sessions():
 
 
 @main.route("/sessions/add", methods=["POST"])
+
 def add_session():
-    """
-    Maakt een nieuwe sessie aan voor de ingelogde patiënt.
-    Alleen de meegestuurde velden worden in de database opgeslagen.
-    De patient_id wordt uit de Flask-sessie gehaald.
-    """
+
+    data = request.get_json()
+
     patient_id = session.get("patient_id")
-    if not patient_id:
-        return jsonify({"success": False, "message": "Niet ingelogd."}), 401
 
-    data = request.json or {}
+    result = supabase.table("sessions").insert({
 
-    # Verplichte velden
-    record = {"patient_id": patient_id}
+        "patient_id": patient_id,
 
-    # Optionele velden: alleen toevoegen als ze in de request zitten
-    optionele_velden = [
-        "startdate", "enddate", "starttime", "endtime",
-        "bottle1_ml", "bottle2_ml", "total_ml", "type", "status"
-    ]
-    for veld in optionele_velden:
-        if veld in data:
-            record[veld] = data[veld]
+        "startdate": data["startdate"],
 
-    result = supabase.table("sessions").insert(record).execute()
-    session_id = result.data[0]["session_id"] if result.data else None
+        "enddate": data["enddate"],
+
+        "starttime": data["starttime"],
+
+        "endtime": data["endtime"],
+
+        "type": data["type"],
+
+        "status": data["status"],
+
+        "bottle1_ml": 0,
+
+        "total_ml": 0
+
+    }).execute()
+
+    session_id = result.data[0]["session_id"]
 
     return jsonify({"success": True, "message": "Session created", "session_id": session_id})
 
@@ -373,6 +377,15 @@ def delete_session(session_id):
     supabase.table("sessions").delete().eq("session_id", session_id).execute()
     return {"message": "Session deleted"}
 
+@main.route("/sessions/<session_id>")
+def get_session(session_id):
+    result = supabase.table("sessions") \
+        .select("*") \
+        .eq("session_id", session_id) \
+        .single() \
+        .execute()
+
+    return jsonify(result.data)
 
 # HELPER FUNCTIONS
 
