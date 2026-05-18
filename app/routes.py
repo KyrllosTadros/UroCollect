@@ -422,7 +422,6 @@ def get_session(session_id):
         .eq("session_id", session_id) \
         .single() \
         .execute()
-
     return jsonify(result.data)
 
 # HELPER FUNCTIONS
