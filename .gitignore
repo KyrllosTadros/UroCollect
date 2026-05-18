@@ -10,3 +10,4 @@ venv/
 
 # IDE-bestanden
 .vscode/
+*.pyc
