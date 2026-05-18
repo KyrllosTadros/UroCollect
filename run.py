@@ -6,7 +6,7 @@ Dit script initialiseert de Flask-applicatie via de application factory
 direct wordt uitgevoerd.
 
 In productie wordt dit bestand niet gebruikt om de server te starten,
-maar wordt de app geladen via een WSGI-server zoals Gunicorn.
+maar wordt de app geladen via een WSGI-server.
 """
 
 from app import create_app
